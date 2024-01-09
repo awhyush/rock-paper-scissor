@@ -21,23 +21,23 @@ function playGame(playerSelection, computerSelection){
     }    
     else if(playerSelection.toLowerCase()==='paper' && computerSelection.toLowerCase()==='rock'){
         playerCounter++;
-        return 'You win : Computer loses to Paper'
+        return `You win : Computer chose ${computerSelection}`
     }
     else if(playerSelection.toLowerCase()==='rock' && computerSelection.toLowerCase()==='scissors'){
         playerCounter++;
-        return 'You win : Computer loses to Rock.'
+        return `You win : Computer chose ${computerSelection}`
     }
     else if(playerSelection.toLowerCase()==='scissors' && computerSelection.toLowerCase()==='rock'){
         compCounter++;
-        return 'You lose : Computer wins by Rock.'
+        return `You lose : chose ${computerSelection}`
     }
     else if(playerSelection.toLowerCase()==='paper' && computerSelection.toLowerCase()==='scissors'){
         compCounter++;
-        return 'You lose : Computer wins by Scissor.';
+        return `You lose : chose ${computerSelection}`;
     }
     else if(playerSelection.toLowerCase()==='scissors' && computerSelection.toLowerCase()==='paper'){
         playerCounter++;
-        return 'You win : Computer loses to Scissor.';
+        return `You win : chose ${computerSelection}`;
     }else{
         return `It's a draw, You chose ${playerSelection} and Computer chose ${computerSelection}`;
     }
@@ -48,17 +48,9 @@ const playerSelection = prompt("Enter your choice :");
 
 function game(){
     //best of five
-    var flag = true;
-    while(flag){
-        
-        console.log(playGame(playerSelection, computerSelection));
-        if(compCounter===5){
-            return 'Computer Wins!!!'
-        }else if(playerCounter){
-            return 'Player WINSSS!!!'
-        }
-
-    }
+    let compScore = 0;
+    let playerScore = 0;
+    
 }
 console.log(playGame(playerSelection, computerSelection));
 // console.log(game());
