@@ -9,48 +9,54 @@ function getComputerChoice(){
         return 'Scissors';
     }    
 }
+let compScore = 0;
+let playerScore = 0;
 
-var compCounter = 0;
-var playerCounter = 0;
+function game() {
+    // best of five
+    while (compScore !== 5 && playerScore !== 5) {
+        const computerSelection = getComputerChoice();
+        const playerSelection = prompt("Enter your choice :");
 
+        const result = playGame(playerSelection, computerSelection);
+        console.log(result);
+    }
 
-function playGame(playerSelection, computerSelection){
-    if(playerSelection.toLowerCase()==='rock' && computerSelection.toLowerCase()==='paper'){
-        compCounter++;
+    if (compScore === 5) {
+        compScore = 0;
+        playerScore = 0;
+        console.log('You Lose');
+        return 'You Lose';
+    } else {
+        compScore = 0;
+        playerScore = 0;
+        console.log('You Win');
+        return 'You Win';
+    }
+}
+
+function playGame(playerSelection, computerSelection) {
+    if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
+        compScore++;
         return `You lose : Computer chose ${computerSelection}`;
-    }    
-    else if(playerSelection.toLowerCase()==='paper' && computerSelection.toLowerCase()==='rock'){
-        playerCounter++;
-        return `You win : Computer chose ${computerSelection}`
-    }
-    else if(playerSelection.toLowerCase()==='rock' && computerSelection.toLowerCase()==='scissors'){
-        playerCounter++;
-        return `You win : Computer chose ${computerSelection}`
-    }
-    else if(playerSelection.toLowerCase()==='scissors' && computerSelection.toLowerCase()==='rock'){
-        compCounter++;
-        return `You lose : chose ${computerSelection}`
-    }
-    else if(playerSelection.toLowerCase()==='paper' && computerSelection.toLowerCase()==='scissors'){
-        compCounter++;
-        return `You lose : chose ${computerSelection}`;
-    }
-    else if(playerSelection.toLowerCase()==='scissors' && computerSelection.toLowerCase()==='paper'){
-        playerCounter++;
-        return `You win : chose ${computerSelection}`;
-    }else{
+    } else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
+        playerScore++;
+        return `You win : Computer chose ${computerSelection}`;
+    } else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {
+        playerScore++;
+        return `You win : Computer chose ${computerSelection}`;
+    } else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {
+        compScore++;
+        return `You lose : Computer chose ${computerSelection}`;
+    } else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
+        compScore++;
+        return `You lose : Computer chose ${computerSelection}`;
+    } else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
+        playerScore++;
+        return `You win : Computer chose ${computerSelection}`;
+    } else {
         return `It's a draw, You chose ${playerSelection} and Computer chose ${computerSelection}`;
     }
 }
 
-const computerSelection = getComputerChoice();
-const playerSelection = prompt("Enter your choice :");
-
-function game(){
-    //best of five
-    let compScore = 0;
-    let playerScore = 0;
-    
-}
-console.log(playGame(playerSelection, computerSelection));
-// console.log(game());
+game();
