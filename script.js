@@ -9,31 +9,12 @@ function getComputerChoice(){
         return 'Scissors';
     }    
 }
+
 let compScore = 0;
 let playerScore = 0;
 
-function game() {
-    // best of five
-    while (compScore !== 5 && playerScore !== 5) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Enter your choice :");
-
-        const result = playGame(playerSelection, computerSelection);
-        console.log(result);
-    }
-
-    if (compScore === 5) {
-        compScore = 0;
-        playerScore = 0;
-        console.log('You Lose');
-        return 'You Lose';
-    } else {
-        compScore = 0;
-        playerScore = 0;
-        console.log('You Win');
-        return 'You Win';
-    }
-}
+const buttons = document.querySelectorAll('button');
+const divs = document.querySelector('.result');
 
 function playGame(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
@@ -57,6 +38,24 @@ function playGame(playerSelection, computerSelection) {
     } else {
         return `It's a draw, You chose ${playerSelection} and Computer chose ${computerSelection}`;
     }
-}
+};
 
-game();
+const resss = document.querySelector('.resss');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const playerSelection = button.className;
+        const computerSelection = getComputerChoice();
+        divs.textContent = playGame(playerSelection, computerSelection);
+        resss.textContent = `Player Score : ${playerScore} | Computer Score : ${compScore}`
+        if(playerScore + compScore === 5 ){
+            if(playerScore>compScore){
+                divs.textContent = `Congrats you win.`
+            }else{
+                divs.textContent = 'Computer wins.'
+            }
+            playerScore = 0;
+            compScore = 0;
+        }
+    });
+});
