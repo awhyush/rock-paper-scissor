@@ -41,6 +41,7 @@ function playGame(playerSelection, computerSelection) {
 };
 
 const resss = document.querySelector('.resss');
+const choice = document.querySelector('.choice');
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -48,6 +49,7 @@ buttons.forEach(button => {
         const computerSelection = getComputerChoice();
         divs.textContent = playGame(playerSelection, computerSelection);
         resss.textContent = `Player Score : ${playerScore} | Computer Score : ${compScore}`
+        choice.textContent = `You chose : ${playerSelection} | Computer chose : ${computerSelection}`;
         if(playerScore + compScore === 5 ){
             if(playerScore>compScore){
                 divs.textContent = `Congrats you win.`
